@@ -1,7 +1,7 @@
-# is925-manuscript-template
-IS 295 Manuscript LaTex Template
+# AI-Assisted Board of Trustees Document Archiving System
+Manuscript
 
-# UPOU MIS IS295 Manuscript Template
+# Manuscript
 
 ## Files
 Texfiles/                   - all tex and bib files must be in this directory
