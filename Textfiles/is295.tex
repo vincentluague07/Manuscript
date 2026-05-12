@@ -1,0 +1,103 @@
+%Sample for is295.cls
+%Author: Katrina Joy Abriol-Santos
+%Reminders: Omit \lipsum commands
+
+\documentclass{is295}
+\usepackage{lipsum} %for generating dummy text
+\usepackage{hyperref} %for hyperlinks
+\usepackage{float}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx} % Required for auto-width columns
+\usepackage{pdflscape}
+% Define a new column type 'L' for left-aligned, auto-wrapping columns
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+
+% Define a smaller font for the table
+\newcommand{\smalltable}{\fontsize{9pt}{11pt}\selectfont}
+
+%\usepackage{showframe} %for debugging the margins
+                              
+%Replace the values here, various commands depend on this variables  
+\renewcommand{\TITLE}{AI-ASSISTED BOARD OF TRUSTEES DOCUMENT ARCHIVING SYSTEM FOR AFPMBAI}
+\renewcommand{\AUTHOR}{VINCENT P. LUAGUE}
+\renewcommand{\DEGREE}{MASTER OF INFORMATION SYSTEMS}
+\renewcommand{\ADVISER}{KATRINA JOY M. ABRIOL-SANTOS}
+\renewcommand{\FACULTY}{Faculty of Information and Communication Studies}
+\renewcommand{\MONTH}{DECEMBER}
+\renewcommand{\YEAR}{2025}
+\renewcommand{\DAY}{07}
+
+% Choose between YES and NO here
+\renewcommand{\INVENTION}{YES/NO}
+\renewcommand{\PUBLICATION}{YES/NO}
+\renewcommand{\CONFIDENTIAL}{YES/NO}
+\renewcommand{\FREE}{YES/NO}
+% ---------------------
+
+\newcommand{\PROGRAMCHAIR}{DR. RIA MAE H. BORROMEO}
+\newcommand{\DEAN}{ASSOC. PROF. ROBERTO FIGUEROA, JR.}
+
+\begin{document}
+	\emergencystretch 3em
+	\begin{frontmatter}
+            
+		%TITLE PAGE
+		\maketitle
+
+            %PERMISSION PAGE
+            \include{Texfiles/permission}
+
+            %APPROVAL PAGE
+            \include{Texfiles/approval}
+            
+		%ACKOWLEDGEMENT
+            \include{Texfiles/acknowkedgement}
+		
+            %ABSTRACT
+            \include{Texfiles/abstract}
+		
+		%TABLE OF CONTENTS
+		\maketableofcontents
+		
+		%LIST OF TABLES
+		\makelistoftables
+
+		%LIST OF FIGURES
+		\makelistoffigures
+
+	\end{frontmatter}
+	
+	%BODY OF MANUSCRIPT HERE (Use up to 3 levels only, (sec -> subsec -> subsubsec)
+	\begin{mainmatter}
+		
+            %INTRODUCTION
+            \include{Texfiles/introduction}
+
+            %REVIEW OF EXISTING ALTERNATIVES
+		\include{Texfiles/review-of-alternatives}
+
+		%PROJECT DETAILS
+            \include{Texfiles/project-details}
+
+            %PROJECT ASSESSMENT
+            \include{Texfiles/project-assessment}
+
+            %RESULTS AND DISCUSSION
+            \include{Texfiles/results}
+		
+		%SUMMARY AND CONCLUSION
+            \include{Texfiles/summary-conclusion}
+
+            %FUTURE WORK
+            \include{Texfiles/future-work}
+            
+		%REFERENCES
+		%Parameter is the references bib file without extension
+		\makereferences{references}
+			
+	\end{mainmatter}
+\end{document}

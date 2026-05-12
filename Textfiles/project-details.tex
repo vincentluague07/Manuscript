@@ -1,0 +1,121 @@
+% Put the project details here
+
+\section{PROJECT DETAILS}
+   
+        \subsection{Overview}
+       The AI-Assisted Board of Trustees Document Archiving System is a local, web-based tool built to fix significant information management problems at AFPMBAI. Right now, board documents are scattered across Google Drive, local storage, and a server on-site. This makes finding them slow and difficult and it can lead to duplicate data.
+
+      This project fixes this by creating one central, secure place for all Board of Trustees documents. Its main feature is a local Large Language Model (LLM) that powers a search tool. This lets authorized users, like Board Members and the Board Secretariat find documents by asking questions in plain language (e.g., "Find all resolutions from Q2 2024 about housing loans") instead of having to browse folders manually or use exact keywords.
+
+      The system focuses on security with AES-256 encryption, access control based on roles, and full audit logs to make sure all data stays inside AFPMBAI’s secure network.
+        
+\subsection{Project Framework}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/agile.png}
+\caption{Agile Development Methodology Framework of the Proposed System (Source: \cite{yukti}). The diagram shows the nature of the development process through continuous feedback loop between the developers and stakeholders.}
+\label{fig:prototypemodel}
+\end{figure}
+The AI-Assisted Board of Trustees Document Archiving System was built using Agile Methodology. This iterative approach fits well with AFPMBAI's changing operational needs. This process began by analyzing requirements to set clear system goals, then brainstormed technical solutions. Next is designed of the system's architecture, database, and interface. This design guided the development of functional parts in stages. Each new version was thoroughly tested for quality before being put on a local server for user review. User comments led to further improvements, and ongoing support and bug fixes kept the system reliable. Agile helped us deliver the project in increments, continuously improve it, and keep stakeholders involved from start to finish.
+
+\subsection{Materials/Technologies Used}
+       The development of the AI-Assisted Board of Trustees Document Archiving System for AFPMBAI requires a collection of hardware and software technologies especially selected to align with the on-premise deployment and security protocols of the organization.
+
+The frontend architecture was constructed using the Bootstrap 5 framework which was customized and combine with Font Awesome 6 to maintain a professional interface. The Jinja2 framework served as the template engine for dynamic HTML rendering while Vanilla JavaScript facilitated client-side interactivity. 
+
+For the backend architecture, the system used Python with the Flask web framework, utilizing a Blueprint-based modular routing structure to enhance its code maintainability. The user session management and Role-Based Access Control (RBAC) were used via Flask framework.
+
+The system’s intelligent capabilities are used by two critical components that can be designed for on-premise systems. The system utilized Docling to extract structured text and metadata from the uploaded documents which enables a structured data extraction to support downstream AI processing without transmitting sensitive information over the internet. Together with this, the core intelligence is the Gemma 3 which is a free and open-source Large Language Model (LLM) hosted locally on the on-premise server and integrated via Ollama REST API. This configuration supports Retrieval-Augmented Generation (RAG) pipeline in which it allows the chatbot to perform context-aware searches across memorandums, meeting minutes, and board resolutions entirely on-premise set-up.
+
+Secure file management is pushed through a strict validation protocols, size limits of only 50 mb per document, and AES-256 encryption to protect documents. The deployment environment is supported and deployed in Windows Server 2019.
+
+
+\subsection{System Design}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/sadnew.png}
+\caption{System Architecture Diagram of the Proposed System }
+\label{fig:sad}
+\end{figure}
+This diagram shows the detailed architecture of the proposed AI-Assisted Board of Trustees Document Archiving System for AFPMBAI. The diagram shows a secure, on-premise infrastructure divided into four primary functional layers, namely the Client Layer, the Application Layer, the AI \& Data Layer, and lastly the Infrastructure Layer. 
+
+ The Client Layer facilitates user interaction through a standard web browser interface built with HTML5, CSS, JavaScript and Fetch API. It enables authorized access specifically the Admin, Board Secretariat and Board Trustee to perform their respective tasks. Access is strictly managed through Role-Based Access Control (RBAC) and secure session cookies via Flask Login. All client requests are transmitted via HTTP to the Application Layer which acts as the system's backend. This layer routes requests through specific modules for APIs, Document Management, Authentication, and System Health. More importantly, it serves as a dedicated Service Layer that acts as the bridge for advanced operations, executing scripts for LLM integration (ai\_service.py), RAG chunking and embedding (rag\_service.py), OCR parsing (documentation\_parser.py), and AES-256 encryption (encryption.py).
+
+A core innovation of the system lies within the AI \& Data Layer which securely handles both machine learning operations and persistent storage without reliance on external cloud processing. It features a locally hosted LLM via Ollama utilizing the Gemma 3:1B model, nomic-embed-text and with a comprehensive OCR Pipeline called Docling that has tools like EasyOCR and TesseractOCR to digitize diverse file types. Data storage is divided into a PostgreSQL Database for structured metadata and logs, and an Encrypted File Storage system utilizing AES-256 and UUID filenames for secure and in-memory decryption of physical documents. This layer also manages the Retrieval-Augmented Generation (RAG) Pipeline Flow, mapping the user query through embedding, similarity search, and context assembly to generate cited responses via "Vicente AI." Finally, the Infrastructure Layer supports the entire system, hosted on Windows Server 2019 using an IIS Reverse Proxy and Waitress WSGI Server with environment configurations keeping secret keys and database URLs secure.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/usecase_final.png}
+\caption{Use Case Diagram of the Proposed AI-Assisted Board of Trustees Document Archiving System for AFPMBAI. The diagram depicts the core functionalities available to each actors namely System Administrator, Board Secretariat, and Board Member.}
+\label{fig:erd-ibot-rms}
+\end{figure}
+
+The diagram describes the interactions between the three primary actors which are the following: the System Administrator, the Board Secretariat, and the Board Member which also have its core functionalities.
+
+At the center of the system's operation are the foundational use cases: User Login, which secures access for all actors, keyword-based search and AI-Assisted Search which is a specialized retrieval function available to all authorized users for querying the archive documents using natural language. The Board Secretariat, acting as the primary data custodian, is responsible for the Upload Document use case in which it includes the mandatory sub-process of Tag Document Metadata to make sure proper classification. Following the upload, the system facilitates a distinct Finalize Archival process, transitioning documents into a secure, immutable state.
+
+The Board Member role is designed for information consumption, with access to Retrieve/Download Document and search functionalities to facilitate decision-making. The System Administrator holds broad oversight capabilities including View Audit Trails for security compliance and Manage User Roles. The management of user roles is further detailed through included use cases such as Create User Account, Update User Access, and Delete/Inactive User Account to guarantee granular control over system access. Finally, the Generate Reports use case allows for the extraction of system analytics, supporting administrative oversight.
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/ERD.png}
+\caption{Entity--Relationship Diagram (ERD) of the AI-Assisted Board of Trustees Document Archiving System. }
+\label{fig:erd-ibot-rms}
+\end{figure}
+
+The ERD model was designed to ensure secure storage, smart retrieval, and compliance with AFPMBAI's existing policies. The schema includes six main tables: Users, Document Categories, Documents, Document Chunks, Activity Logs, and Sessions.
+
+At the heart of this schema is the Users section, which handles who can access the system and what they can do. This includes Administrators, the Board Relations Office (BRO) secretariat, and Board Members. This section stores key identification information, hashed passwords, status, and assigned roles. This information forms the basis for the system's Role-Based Access Control (RBAC). The User ID connects different parts of the system, linking users to the documents they upload and save, and to actions recorded in the activity logs, ensuring full accountability.
+
+The Document Categories section helps organize records logically within the digital archive. By storing the category name and a detailed description, it allows for structured grouping of board-related files, making it much easier to browse and find information.
+
+The Documents section serves as the main storage for board resolutions, meeting minutes, memos, and policy references. It holds important details like file paths, sizes, and types, as well as operational settings like encryption and archival status to meet strict security rules. More importantly, this section is set up to support the system’s artificial intelligence features by directly storing extracted text, AI-generated summaries, and AI keywords. Each document is linked to a specific category for organization and to the Users section to track its origin and history.
+
+To power the system’s smart chat and semantic search, the Document Chunks section is essential. This table is important for the system’s Retrieval-Augmented Generation (RAG) architecture. It breaks down larger documents into smaller, manageable text segments, or "chunks," and stores them along with their vector embeddings in JSON format and specific page numbers. This allows the integrated Large Language Model (LLM) to perform searches that understand context and quickly find the exact parts of a document needed to answer user questions accurately.
+
+The Activity Logs section was added to keep an unchangeable and complete record of system activities. It notes specific user actions, the types and IDs of resources affected, IP addresses, and timestamps. It also has a JSON-based details field to store fine-grained event information, providing a very detailed audit trail for transparency and security monitoring.
+
+Finally, the Sessions section is a separate table used for secure application session management. It ensures that user access within the internal network remains securely authenticated and time-limited by tracking session IDs, serialized session data, and expiration times.
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/se.png}
+\caption{Sequence Diagram for User Login, Upload, and Search.}
+\label{fig:sequence}
+\end{figure}
+The Sequence Diagram for the proposed system illustrates how users interact with the different parts of the AI-Assisted Board of Trustees Document Archiving System. It shows the application's live behavior by mapping out how requests move through the Web Interface, Application Server, Database, File Archive, and Local LLM Engine. The process starts with user login: users enter their credentials through the front-end interface, which triggers a back-end check against the PostgreSQL database. If successful, the system provides a session token and displays the secure dashboard.
+
+After logging in, the diagram shows three main functions: Document Upload, Keyword Search, and AI-Assisted Search. For uploads, the Board Secretariat submits a file with descriptive information. The Application Server sends this to the NAS File Archive for storage. The system then saves the file's location and the descriptive information in the database and confirms the upload to the user.
+
+For keyword searches, the user types a query into the front-end. The Application Server sends this to the search module, which analyzes the input and finds relevant terms for matching. The system then looks up these keywords against indexed document information and attributes in the relational database. Once it finds matches, the system gathers the relevant details, file locations, and descriptions, then sends this information to the user interface to be shown.
+
+For AI-assisted searches, the user enters a natural language query through the front-end. The Application Server passes this request to the Local LLM Engine, which processes the query to create contextual embeddings. These embeddings are used to find similar stored vectors, allowing the system to retrieve relevant governance documents based on meaning. The system combines the metadata and file references from this vector search with descriptions from the database before sending them back to the user interface for display.
+
+The diagram also includes audit logging at every step, ensuring all interactions, from logging in to accessing documents, are recorded for compliance and tracking.
+
+
+\subsection{Implementation}
+The project is scheduled to run from September 2025 to April 2026 using an Agile Methodology.
+
+Started with a thorough Requirement Analysis. This involves talking to everyone involved and mapping out user needs to create a product backlog. Immediately after, I move into the Design phase, where we'll plan the system's structure, database layout, and user interface mockups.
+
+The main development happened in iterative sprints. Sprint 1 focused on core features like user authentication and document upload. Sprint 2 integrated smart capabilities by setting up a local Large Language Model and a Vector Database. Finally, Sprint 3 refined the system, optimizing search and incorporating feedback from previous sprint reviews.
+
+After these development sprints, the project entered a Quality Assurance phase. This includes Security Testing, performance checks, and User Acceptance Testing (UAT) before the final Deployment and Support phase.
+
+\begin{landscape}
+    \begin{figure}[H]
+        \centering
+        % width=1.3\textwidth might work, or use \linewidth relative to the new landscape width
+        \includegraphics[width=1\linewidth]{Texfiles/images/gantt.png}
+        \caption{Gantt Chart}
+        \label{fig:gantt-chart}
+    \end{figure}
+\end{landscape}

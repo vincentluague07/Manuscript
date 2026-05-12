@@ -1,0 +1,405 @@
+        % Put the results and discussion here
+
+\section{RESULTS AND DISCUSSION}
+Building the AI-Assisted Document Archiving System for AFPMBAI offered several valuable insights and lessons. This chapter shares my experiences during development, including the difficulties I faced and the key takeaways.
+
+The project began with requirements gathering, where I analyzed how the Board Relations Office currently stores and retrieves Board of Trustees documents. A significant learning point at this stage was understanding traditional methods of archiving and managing organizational documents. Many documents reside in folders or shared drives, making it hard to quickly find specific records when needed. This underscored the need for a central, searchable document archiving system.
+
+Following requirements gathering, next is the system design phase. I created diagrams like Use-Case Diagrams, Data Flow Diagrams, Entity Relationship Diagrams, and Sequence Diagrams to show how the system works. These diagrams further clarified how users would interact with the system and how information would move through the application. We first conceptualized the initial interface designs and system structure before building them into the actual system.
+\subsection{User Interface Design}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Login Page.png}%
+    }
+    \caption{Login Page}
+    \label{fig:Login Page}
+\end{figure}
+The Login page serves as the primary authentication gateway. By requiring login credentials upfront, the system ensures that only registered users can interact with the application’s modules. This prevents unauthorized access where a user might attempt to bypass the UI by entering a specific internal URL (e.g., /admin/dashboard) directly into the browser.
+
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Dashboard Page.png}%
+    }
+    \caption{Dashboard Page}
+    \label{fig:Dashboard Page}
+\end{figure}
+
+After successfully logging in, the user will be taken to the Dashboard page. The main overview screen of the system provides a real-time summary of the entire document archiving system.
+
+\subsection*{Dashboard Components:}
+
+\paragraph{Storage \& Encryption Summary Cards}
+\begin{itemize}
+    \item \textbf{Document Storage} --- shows total used storage and available space.
+    \item \textbf{Encrypted Files} --- displays the percentage and count of encrypted documents.
+    \item \textbf{Licensed Users} --- shows the number of active users in the system.
+\end{itemize}
+
+\paragraph{Statistics Cards}
+\begin{itemize}
+    \item \textbf{Total Documents} --- total number of active (non-archived) documents.
+    \item \textbf{Pending AI Index} --- documents that have not yet been processed by the AI.
+    \item \textbf{Archived This Year} --- count of documents archived in the current year.
+    \item \textbf{System Health} --- percentage of documents successfully indexed by the AI.
+    \item \textbf{Categories} --- total number of document folders/categories.
+\end{itemize}
+
+\paragraph{Recent Documents}
+Lists the most recently uploaded documents with their category, upload date, and AI indexing status badge.
+
+\paragraph{Quick Actions}
+Provides shortcut buttons to Upload New Document, Keyword Search, Browse Categories, View Archive, and Audit Trail.
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Keyword Search Page.png}%
+    }
+    \caption{Keyword Search Page}
+    \label{fig:Keyword Search Page}
+\end{figure}
+
+The Keyword Search page allows users to quickly find documents across the entire archive using text-based search. The system searches through document titles, descriptions, extracted text, and AI-generated keywords.
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Documents Page.png}%
+    }
+    \caption{Documents page}
+    \label{fig:Documents Page}
+\end{figure}
+
+The Documents page lists all active documents in the system. It has filtering, sorting, and quick action buttons for each document.
+
+\subsection*{Features:}
+
+\begin{itemize}
+    \item \textbf{Filter by Document Type and Year} using the dropdown menus.
+    \item \textbf{Click Filter} to apply or \textbf{Clear} to reset the filters.
+    \item Each row displays the document \textbf{Title}, original \textbf{filename}, \textbf{Type badge}, \textbf{Date}, \textbf{File Size}, and \textbf{Uploaded By} user.
+    \item \textbf{Action buttons} per document: Download, View, Archive, and Delete.
+    \item \textbf{Top-right buttons}: Browse Folders, Upload Document, and AI Indexing (admin only).
+\end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Upload Document Page.png}%
+    }
+    \caption{Upload Document Page}
+    \label{fig:Upload Document Page}
+\end{figure}
+
+The Upload Document page allows authorized users (Admin and Board Secretariat) to add new documents to the archive. The system automatically processes each upload through OCR, AI analysis, and AES-256 encryption.
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Vicente chat.png}%
+    }
+    \caption{Vicente AI-Chat Assistant}
+    \label{fig:Vicente AI-Chat Assistant}
+\end{figure}
+
+Vicente is the AI-powered document assistant embedded in the system. It uses Retrieval-Augmented Generation (RAG) technology to answer questions about the documents stored in the archive. Vicente can be accessed from any page by clicking the green chat bubble at the bottom-right corner of the screen.
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/audit trail.png}%
+    }
+    \caption{Audit Trail}
+    \label{fig:Audit Trail}
+\end{figure}
+
+The Audit Trail page provides a user footprint inside the system. It logs of all user activities performed in the system. This module supports accountability and compliance requirements. The Administrator can only access this feature.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/User Management.png}%
+    }
+    \caption{User Management}
+    \label{fig:User Management}
+\end{figure}
+The User Management page allows Administrators to manage system user accounts, assign roles, and oversee Document Categories. The Administrator can only access this feature.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Add User Panel.png }%
+    }
+    \caption{Add User Panel}
+    \label{fig:Add User Panel}
+\end{figure}
+
+
+\subsection*{Adding a New User}
+
+\begin{itemize}
+    \item \textbf{Click the + Add User button} (located in the top-right corner).
+    \item \textbf{Fill in the required fields}: Username, Email, First Name, and Last Name.
+    \item \textbf{Assign a Role}: Select from Admin, Board of Trustee, or Board Secretariat.
+    \item \textbf{Set the Status}: Choose either Active or Inactive.
+    \item \textbf{Set an initial Password}: Must be a minimum of 6 characters.
+    \item \textbf{Click Save} to finalize and create the account.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Archive Panel.png}%
+    }
+    \caption{Archive Panel}
+    \label{fig:Archive Panel}
+\end{figure}
+Archive Panel is a specialized interface that appears when an Administrator initiates the archiving process from the main Documents list. This module makes sure that document transitions are documented and intentional.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/Archive Page.png}%
+    }
+    \caption{Archive Page}
+    \label{fig:Archive Page}
+\end{figure}
+
+The Archive page contains all documents that have been formally archived. Archived documents are final, approved records, meaning that they are no longer active but must be retained for historical reference. Only Administrators can archive, restore, or permanently delete documents.
+
+\subsection*{Archive Page Features:}
+
+\begin{itemize}
+    \item \textbf{Displays summary statistics}: Total Archived and Archived This Year.
+    \item \textbf{Archived Document Details}: Each entry displays the Document name, Category, Archived By, Archived Date, Reason, and available Action buttons.
+    \item \textbf{Action Buttons}: 
+    \begin{itemize}
+        \item \textbf{Download}: Retrieve the archived document.
+        \item \textbf{Restore}: Move the document back to the active Documents list.
+        \item \textbf{Permanently Delete}: Irreversibly remove the document from the system.
+    \end{itemize}
+\end{itemize}
+
+A core part of the project involved using Artificial Intelligence to help process documents. The system allows users to upload documents, which the AI then analyzes to create metadata. This metadata makes it easier to index and find the documents. This process clearly showed how AI can greatly improve how efficiently document archiving systems work.
+
+During development, I looked at many technologies and tools. I assessed web development frameworks and database systems to find those that would best meet the system’s needs. The finished system uses a structured Relational Database Management System PostgreSQL and SQLAlchemy as an Object-Relational Mapper to store document metadata and system records. The AI part was added to process uploaded documents and create useful outputs.
+
+Part of continuous development is testing the system's functionality, security, stability, and overall performance. These tests included User Acceptance Testing (UAT) to check usability and ensure it met requirements, OWASP ZAP vulnerability testing to find potential security risks and web application weaknesses, and an 8-hour soak test with Apache JMeter to assess its reliability and endurance during long periods of operation. The results of these tests appear in the next sections.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat1.png}%
+    }
+    \caption{UAT Test Cases No. 1-4}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat2.png}%
+    }
+    \caption{UAT Test Cases No. 5-7}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat3.png}%
+    }
+    \caption{UAT Test Cases No. 8-9}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat4.png}%
+    }
+    \caption{UAT Test Cases No. 10-13}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat14.png}%
+    }
+    \caption{UAT Test Cases No. 14-17}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat17.png}%
+    }
+    \caption{UAT Test Cases No. 18-20}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat21.png}%
+    }
+    \caption{UAT Test Cases No. 21-23}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat27.png}%
+    }
+    \caption{UAT Test Cases No. 24-28}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/uat29.png}%
+    }
+    \caption{UAT Test Cases No. 29-30}
+    \label{fig:uat-test-cases-1}
+\end{figure}
+
+
+
+
+
+\begin{table}[H]
+\centering
+\caption{UAT Results}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\textbf{ } & \textbf{1st Pass} & \textbf{2nd Pass} \\ \hline
+
+Total Test Cases & 30 & 30 \\ \hline
+
+Passed & 23 & 30 \\ \hline
+
+Failed & \textbf{7} & \textbf{0} \\ \hline
+
+Pass Rate & \textbf{76.67\%} & \textbf{100\%} \\ \hline
+
+\end{tabularx}
+\end{table}
+
+
+ \subsection{UAT Results}
+     A comprehensive User Acceptance Testing (UAT) was conducted to validate that the AI-Assisted Board of Trustees Document Archiving System meets the functional  requirements and also some parts of non-functional requirements of the AFPMBAI Board of Trustees prior to final deployment. A total of thirty (30) test cases were prepared, covering eleven (11) functional modules namely: Login Authentication, Dashboard, Document Management, Search, Categories, Archive, Audit Trail, User Management, Vicente AI Chat, Security, and System Health. Testing was performed across three user roles. Admin, Board Secretariat, and Board Trustee to verify that role-based access control (RBAC) was correctly enforced. The UAT was carried out in two passes: a First Pass to surface existing bugs and a Second Pass to confirm that all identified issues had been resolved.
+
+During the First Pass, twenty-three (23) test cases were marked PASSED and seven (7) were marked FAILED. The failed test cases were observed across four areas. The first one is the Upload Validation test failed because unsupported file type errors were not displayed to the user on-screen appearing only in the browser console. The second one is the Restore Document test failed due to a missing database commit statement in the restore route which prevented the archived flag from being persisted. Third one is that the Filter Search test failed because the Document Type filter was silently dropped when combined with the Search In parameter caused by incorrect parameter parsing in the backend query builder. The forth one is  the Filter Activity Log test failed because the Audit Trail filter dropdowns lacked the necessary JavaScript event listener bindings rendering them non-functional. The fifth one is the Casual greeting test failed because Vicente processed all messages through the full RAG retrieval pipeline regardless of intent, causing irrelevant source documents to appear in response to simple greetings. The sixth one is the Search Archived Documents via AI test failed because both the vector embedding and retrieval functions contained an explicit filter that excluded archived documents from Vicente's knowledge base and the last one is the RBAC Enforcement test failed because the document upload API endpoint was missing its role-verification decorator allowing a Board Trustee to submit documents via direct API call which was identified as a critical security vulnerability.
+
+All seven defects were systematically resolved before the Second Pass. Upload validation was corrected by adding a visible on-screen error message and reinforcing server-side checks. The Restore Document issue was fixed by adding the missing db.session.commit() call to the restore endpoint. The Filter Search defect was resolved by revising the backend query builder to correctly apply all filter parameters simultaneously. Audit Trail filtering was restored by attaching the proper event listeners to the filter dropdowns. Vicente's casual greeting behavior was corrected by implementing a pattern-matching check (CASUAL\_PATTERN) that detects greetings and short messages and bypasses RAG retrieval entirely for those inputs. Archived document retrieval was restored by removing the is\_archived == False filter condition from both retrieval functions in rag\_service.py. Finally, the RBAC vulnerability was addressed by applying the role-verification decorator to all restricted API endpoints and ensuring server-side role checks occur before any page content is rendered.
+
+The Second Pass re-evaluated all thirty (30) test cases and confirmed that every previously failed test case now achieved a PASSED result, with no regression observed in the twenty-three cases that had already passed in the First Pass. The UAT concluded with a 100\% pass rate, stating that AI-Assisted Board of Trustees Document Archiving System is functionally complete, secure, and ready for production deployment in the AFPMBAI Board of Trustees environment.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/ZAP front UI.png}
+\caption{OWASP ZAP vulnerability testing. }
+\label{fig:zap-alerts}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/ZAP Alerts.png}
+\caption{OWASP ZAP vulnerability alert summary for the AI-Assisted Document Archiving System. }
+\label{fig:zap-alerts}
+\end{figure}
+
+\subsection{Security Testing Results}
+
+The OWASP ZAP active scan results indicate that the application has no detected Critical or High-severity vulnerabilities which suggests that it is not susceptible to common high impact attacks like SQL Injection and Cross-Site Scripting at the time of testing.
+
+The scan identified six Medium-severity, five Low-severity and seven Informational alerts. These conclusions primarily relate to missing HTTP security headers (e.g., Content Security Policy, X-Content-Type-Options, and anti-clickjacking headers) as well as minor configuration issues like incomplete cookie attributes. Although these issues do not directly cause an immediate system compromise, they indicate areas for security strengthening. The system is set up in a controlled on-premise intranet environment with restricted access, reducing exposure to external threat vectors. However, the results remain important, specifically in scenarios involving insider threats or future system exposure.
+
+To address this, recommended mitigation measures include the implementation
+of standard security headers, enforced secure cookie attributes (HttpOnly, Secure, and SameSite), and use transport-layer protections like HTTPS with HSTS.
+
+The system also includes backend input validation, secure session handling,
+and role-based access control (RBAC) to ensure protection of sensitive archived data. The results shows an acceptable security baseline with clearly identified areas for additional improvement and strengthening.
+
+In addition, the system has a backend input validation, secure session handling and role-based access control (RBAC) to ensure protection of sensitive archival data. The results shows an acceptable security baseline with clearly identified areas for further improvement and hardening.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/Encrypted Files.png}
+\caption{Encrypted Files via AES-256 Encryption}
+\label{fig:aes-256}
+\end{figure}
+This image shows the local folder where the system encrypts and stores uploaded documents which features the two security features in the uploaded documents. First, instead of keeping original file names that might reveal sensitive information, the system automatically renames every file into a long, random string of characters called a UUID (Universally Unique Identifiers). This ensures no one can guess what a document is about just by looking at its name. Second, the ".enc" extension at the end of each file indicates that the document's contents have been securely scrambled, or encrypted via AES-256 encryption. Because of this, even if an unauthorized person manages to access this storage folder, they will not be able to open or read the files without logging into the official Ai-assisted board of trustees document archiving system.
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/soak-test-jmeter-ui.png}%
+    }
+    \caption{JMeter User Interface}
+    \label{fig:Jmeter}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/soak-test-scene.png}%
+    }
+    \caption{Automated uploading of PDF file via Jmeter}
+    \label{fig:automated}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/jmeter-result.png}%
+    }
+    \caption{JMeter Dashboard}
+    \label{fig:jmeter-dashboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{%
+        \includegraphics[width=1.2\textwidth]{Texfiles/images/jmeter-stats.png}%
+    }
+    \caption{JMeter Statistics}
+    \label{fig:jmeter-stats}
+\end{figure}
+
+\subsection{8-Hour Soak Test Procedure and Results}
+
+
+To validate the long-term stability and memory management of the AI-Assisted Board of Trustees Document Archiving System, an 8-hour continuous Soak Test was executed using a distributed testing architecture. A dedicated load-generation server (IP: 10.20.10.35) was used to generate and direct sustained concurrent user traffic to the primary application and database server (IP: 10.10.10.11), making sure realistic network simulation while preventing load-generation software from distorting the application's hardware metrics. Apache JMeter was set up to deploy virtual users in an infinite loop. These users executed the system’s core workflows, including authentication, dashboard queries and uploading text-based PDF documents for AI Vector Indexing (RAG). Algorithmic timers were strategically placed between requests to accurately replicate natural human pacing. This allowed the Python Waitress server and background AI extraction tasks to efficiently process the document queue without artificial stress bottlenecks.
+
+The system successfully completed the full 8-hour duration (April 25, 2026, 8:29 PM to April 26, 2026, 4:29 AM) with outstanding performance, achieving a perfect 100 percent pass rate and a 0.00 percent error rate across a total of 39,949 requests. This sustained load included 7,901 successful PDF uploads and AI indexing events, resulting in an "Excellent" overall APDEX score of 0.962. Even with the AI working hard in the background, the system stayed very fast. Simple tasks like viewing the dashboard took about 58 milliseconds and even the most demanding task uploading and indexing a PDF averaged just 388 milliseconds. Throughout the test, there were no signs of memory leaks or the computer getting overwhelmed. These results prove the system is stable, reliable, and ready to be used in a real office environment.
+
+
+One of the key learnings from this project was understanding how AI services can be integrated into a traditional information system. The AI does not replace human in decision-making. But instead, it assists users by organizing information, summarizing long documents, and making retrieval faster. This shows how AI can enhance productivity in organizations with large amounts of archived records.
+
+Many challenges were encountered during the development of the system, particularly in implementing the AI component using the organization’s existing server infrastructure. The current server does not have a dedicated GPU, which is typically required for efficient AI processing. Although the system was able to run on the server, the AI processes consumed a large amount of RAM, which could potentially affect overall system performance. To address this limitation, an alternative hardware solution was explored. With the support of the organization, a NVIDIA Jetson Orin device was acquired and connected to the server to provide dedicated AI processing capabilities. However, upon testing, it was observed that the NVIDIA Jetson Orin performed slower than the infrastructure server due to its limited CPU capacity and 8 GB of RAM. During conversational interactions with the LLM, the device’s resource constraints frequently caused the application to quit. Consequently, the decision was made to revert the AI processing to the main infrastructure server to ensure system stability and more reliable response times.
+
+Time management was another challenge during the development process. Since the project was conducted alongside professional responsibilities, balancing work commitments and development tasks required careful planning and scheduling.
+
+Despite these challenges, the project was successfully completed and demonstrated that an AI-assisted document archiving system can improve the way organizations manage important documents. The system provides a more organized method of storing records while enabling faster retrieval through AI-generated summaries and searchable metadata.
+
+User feedback during testing indicated that the system can significantly reduce the time needed to locate Board of Trustees documents. Instead of manually browsing through multiple folders or files, users can quickly search for documents using semantic-search by the AI component.
+
+Overall, the project showed that integrating AI into document archiving systems can provide practical benefits for organizations like AFPMBAI. The system can serve as a foundation for future improvements such as expanding AI capabilities, improving document classification and integrating additional features that further support digital transformation within the organization.

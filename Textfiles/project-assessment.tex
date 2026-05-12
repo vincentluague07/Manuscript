@@ -1,0 +1,86 @@
+% Put the project assessment here
+
+\section{Project Assessment}
+The AI-Assisted Board of Trustees Document Archiving System was evaluated using a structured framework with three main phases: User Acceptance Testing (UAT) Security Testing, and 8-hour Soak Testing. This process ensured the system not only met the technical requirements detailed in the System Requirements Specification (SRS) but also followed the security and usability standards of the Armed Forces and Police Mutual Benefit Association Incorporated (AFPMBAI).
+    \subsection{User Acceptance Testing}
+
+User Acceptance Testing (UAT) ensures the AI-Assisted Board of Trustees Document Archiving System meets user needs, functional requirements, and operational procedures. Four participants were selected from the Board Relations Office (BRO) using a targeted sampling method. This ensured the evaluators understood the operations and had the specific knowledge needed to judge the system's usefulness in actual situations.
+
+The UAT process follows a set plan based on functional and non-functional tests developed from the approved requirements. During testing, participants perform important tasks like uploading archival documents, starting the formal archiving process, checking metadata extraction results, and finding records using keyword and natural language searches. These tasks mimic everyday document management activities to see if the system works correctly in real-life situations.
+
+
+\begin{table}[H]
+\centering
+\caption{Functional Test Cases}
+\footnotesize
+\renewcommand{\arraystretch}{0.8}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|p{1.6cm}|p{2.1cm}|X|p{2.5cm}|p{3cm}|}
+\hline
+\textbf{Test Case ID} & \textbf{Requirement} & \textbf{Test Description} & \textbf{Input} & \textbf{Expected Output} \\ \hline
+
+TC-01 & FR-01 Login & Verify login using valid credentials & username + Password & User successfully logs in within 3 seconds \\ \hline
+
+TC-02 & FR-01 Login & Verify login error handling & Wrong username/password & Generic error message; no system details revealed \\ \hline
+
+TC-03 & FR-02 User Registration & Admin creates a new user account & User details + role assignment & New active account is added to database \\ \hline
+
+TC-04 & FR-02 User Registration & Prevent unauthorized registration & Regular user attempts to register account & No user registration module for regular user \\ \hline
+
+TC-05 & FR-03 Document Upload & Validate file upload process & PDF/DOCX file & File stored in staging; basic metadata extracted \\ \hline
+
+TC-06 & FR-04 Document Archiving & Verify formal archiving process & Click “Archive” + metadata confirmation & Document marked “Archived,” encrypted, stored in archive \\ \hline
+
+TC-07 & FR-04 Document Archiving & Verify immutability after archiving & Attempt to modify archived record & System prevents modification; audit log recorded \\ \hline
+
+TC-08 & FR-05 Keyword Search & Match keyword-based retrieval & Filename or metadata keyword & Immediate exact-match results displayed \\ \hline
+
+TC-09 & FR-06 AI Search & Validate contextual search retrieval & Natural-language query & AI returns contextually relevant documents; no hallucinated results \\ \hline
+
+TC-10 & FR-07 Reports & Generate system activity reports & Select date range + report type & XLSX report generated with accurate data \\ \hline
+
+TC-11 & FR-08 Audit Trail & Validate audit entry creation & Perform upload/ download/ login & Audit log entry created with timestamp, user ID, IP \\ \hline
+
+
+\end{tabularx}
+\end{table}
+The table functional test case scenarios evaluate whether each feature of the AI-Assisted Board of Trustees Document Archiving System performs according to the specifications defined in the Software Requirements Specification (SRS). These tests verify the correctness of all user-facing and backend processes, including account authentication, document uploading, metadata extraction, folder management, keyword-based retrieval, AI-driven semantic search, audit logging, and administrative configuration. Each scenario specifies the expected system behavior when valid or invalid inputs are provided. The results of these tests confirm that the system’s core functionalities operate as intended and support the operational needs of the AFPMBAI Board Relations Office (BRO).
+
+\begin{table}[H]
+\centering
+\caption{Non-Functional Test Cases}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{|p{1.8cm}|p{2.5cm}|X|p{2.5cm}|p{3cm}|}
+\hline
+\textbf{Test Case ID} & \textbf{Category} & \textbf{Test Description} & \textbf{Test Method} & \textbf{Expected Result} \\ \hline
+
+NFR-01 & Performance (Keyword Search) & Measure response time for keyword search & Load testing & Search results return immediately (<3s) \\ \hline
+
+NFR-02 & Performance (AI Search) & Validate daily AI indexing & Scheduled cron test & Newly uploaded documents appear in AI search next day \\ \hline
+
+NFR-03 & Security (Data at Rest) & Verify AES-256 encryption of archived files & Manual inspection + decrypt test & Files unreadable outside system; successful decryption internally \\ \hline
+
+NFR-04 & Security (RBAC) & Validate access restrictions & Role-switching tests & Unauthorized actions are blocked \\ \hline
+
+NFR-05 & Security (Transport Layer) & Validate On-premise/VPN access only & Browser & Unable to access the system when not connected to On-premise connection or VPN \\ \hline
+
+NFR-06 & Reliability / Uptime & Continuous stability test & 8-hour soak test & No crashes; memory leak <5\% \\ \hline
+
+NFR-07 & Usability & User Acceptance Testing & Conduct a comprehensive User Acceptance Testing (UAT) with representative end users using predefined task scenarios and feedback forms. & At least 90\% of test cases are successfully completed with no critical defects, indicating readiness for deployment. \\ \hline
+\end{tabularx}
+\end{table}
+
+The table non-functional test case scenarios assess the system’s performance, security, reliability, and overall user experience beyond the correctness of basic features. These evaluations measure critical quality attributes such as system response time during search operations, stability under concurrent use, encryption and access-control enforcement, compatibility across supported browsers, and resilience during prolonged system interactions.
+
+
+
+
+    \subsection{Security Testing}
+     The AI-Assisted Board of Trustees Document Archiving System's security was evaluated using a structured application security assessment with the OWASP Zed Attack Proxy (ZAP). The \cite{OWASPZAP2024} recognizes ZAP as an open-source web application security scanner that effectively finds weaknesses in web-based systems. We used ZAP to check the system's ability to withstand common threats through automated scanning and interactive security tests.
+     
+     The security assessment included both logged-in and logged-out scans to mimic how users would actually interact with the system. The System Administrator, Board Secretariat, and Board Member roles was tested while logged in to confirm that the Role-Based Access Control (RBAC) mechanisms worked as they should. ZAP helped us find vulnerabilities listed in the OWASP Top 10, such as injection risks, weak authentication, faulty access control, insecure direct object references (IDOR), cross-site scripting, and session management flaws.
+
+    Because AFPMBAI Board of Trustees documents are confidential, all testing happened in a controlled development environment using anonymized or fake data. I analyzed and prioritized any found vulnerabilities by their severity. Before retesting, the solutions were applied like stricter backend validation, better session security, secure response headers, and improved RBAC enforcement. Verification checks confirmed that these fixes worked.
+

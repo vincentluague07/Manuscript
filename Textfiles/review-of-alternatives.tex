@@ -1,0 +1,127 @@
+\section{REVIEW OF EXISTING ALTERNATIVES}
+\subsection{Document Archiving System}
+
+Document archiving systems help organizations to store, manage, and keep important records over time. This ensures that the records are accessible, compliant with regulations, and secure. \cite{Quantanite_2023} pointed out that good document archiving keeps documents from being lost or damaged, helps meet legal requirements, allows for quick finding of information, and saves historical records. \cite{Docsuite2023} mentioned that secure document archiving leads to better access to information, improved document safety through encryption and tracking, cost savings from less need for physical storage, and better productivity by reducing time spent looking for files.
+
+Furthermore, current document archiving systems that automatically categorize, tag with keywords, enforce how long documents are kept, and remove duplicates can greatly improve how fast information is found and reduce costs \citep{AICR2025}. For instance, one study showed that automatic record categorization and indexing cut down processing time, made things more consistent, and allowed for quicker compliance checks \citep{RecordsKeeper2025}. However, these usual automation features are increasingly seen as restricted because they depend on fixed rules.
+
+Recent progress in Artificial Intelligence (AI) has brought adaptable and context-aware features to document archiving systems. These include semantic search, smart document grouping, and natural-language search. These features allow systems to understand what documents mean, rather than just relying on pre-set keyword structures \citep{Mahadevkar2024}. Therefore, for organizations like AFPMBAI, which handle many management-level documents, adding AI to document archiving systems is a smart move. An AI-powered document archiving system makes finding information smarter, turning it into dynamic, context-aware systems that improve oversight and how well operations run.
+
+
+
+% ------------------------
+% Comparison Table
+% ------------------------
+
+% ------------------------
+% Comparison Table
+% ------------------------
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Existing Alternatives}
+    \label{table:existing-alternatives-summary}
+    
+    % 1. Reduce font size to footnote size
+    \footnotesize 
+    
+    % 2. Tighten vertical spacing (default is 1.0)
+    \renewcommand{\arraystretch}{1.1} 
+    
+    % 3. Tighten horizontal padding
+    \setlength{\tabcolsep}{4pt} 
+
+    % 4. Use tabularx to fill textwidth. 
+    % The structural definition uses:
+    % p{...} for fixed width small columns
+    % L (defined above) for flexible width large columns
+    \begin{tabularx}{\textwidth}{|p{2.5cm}|p{2.0cm}|L|L|L|}
+        \hline
+        \textbf{System (License)} & \textbf{Platform} & \textbf{Brief Description} & \textbf{Basic Functionalities} & \textbf{Relation to Proposed System} \\
+        \hline\hline
+        
+        \textbf{Proposed System: AI-Assisted Board of Trustees Document Archiving System for AFPMBAI (Capstone)} & 
+        Web-Based Application (On-Premise Server) & 
+        On-premise document archiving system with integrated AI chatbot for intelligent, context-aware retrieval and secure access to Board of Trustees documents. & 
+        LLM-powered chatbot, role-based access, secure archiving with AES-256 encryption. & 
+        -- \\
+        \hline
+        
+        SharePoint (Microsoft 365 Paid Subscription) & 
+        Cloud / Hybrid & 
+        Collaboration and document management platform widely used in enterprise environments. & 
+        File storage, workflow automation, and metadata tagging. & 
+        Cloud-dependent; limited AI search without external integration. \\
+        \hline
+        
+        DocuWare & 
+        Cloud / On-Premise & 
+        DMS supporting digital archiving, workflow automation, and metadata indexing. & 
+        Secure archiving, OCR integration, and metadata indexing. & 
+        Comparable storage, but lacks AI-driven contextual search for board governance. \\
+        \hline
+        
+        M-Files Document Management System& 
+        Cloud / On-Premise & 
+        Enterprise content management with metadata-based organization. & 
+        Automated classification, version control, and audit trails. & 
+        Similar automation but primarily cloud-driven; lacks local AI chatbot integration. \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+% -------------------------------------------
+% EXPLANATIONS BELOW THE TABLE
+% -------------------------------------------
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]
+{Texfiles/images/sharepoint.jpg}
+\caption{Microsoft SharePoint Document Library Interface showing document categories, metadata, and version tracking (Source: Microsoft, 2024).}
+\label{fig:sharepoint-interface}
+\end{figure}
+
+\subsection{Microsoft SharePoint}
+Microsoft SharePoint is one of the most widely adopted enterprise collaboration and document  management platforms within the Microsoft 365 ecosystem. It allows organizations to store, organize and share digital files while maintaining centralized access control and workflow automation across departments \citep{MicrosoftSharePoint2024}. 
+
+Among its most notable features is its support for version control and metadata tagging in which it helps users to track document changes and categorize records systematically. SharePoint also provides configurable workflows for document approval and routing through its Power Automate integration. For example, organizations can automate the review and approval process for policy documents to secure the records following pre-defined governance steps before being uploaded or archived. 
+
+Another feature is the SharePoint’s advanced search functionality in which it uses metadata and Microsoft Search services to retrieve documents based on titles, tags, or content. This structured search allows users to locate relevant files quickly. However, it remains limited to keyword-based retrieval and lacks deep semantic understanding. Whereas the proposed AI-Assisted Board of Trustees Document Archiving System seeks to enhance this by integrating a locally hosted Large Language Model (LLM) that can interpret the intent and context of user queries in natural language.
+
+In terms of security, SharePoint supports role-based permissions, multifactor authentication, and audit trails which are essential for managing access to sensitive files. However, these security features are implemented within Microsoft’s cloud infrastructure in which it relies heavily on the organization’s subscription type and internet connectivity. While hybrid deployment is possible, full functionality often depends on Microsoft’s servers which conflicts with AFPMBAI’s policy requiring all systems to be maintained on-premise for confidentiality and sovereignty.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/docuware.png}
+\caption{Docuvu Dashbboard (Source: Docuvu, 2025).}
+\label{fig:sharepoint-interface}
+\end{figure}
+
+\subsection{DocuWare}
+DocuWare offers both cloud and on-premise solutions designed for secure digital archiving, workflow automation, and metadata-based retrieval \citep{DocuWare2023}. It integrates optical character recognition (OCR) to convert scanned documents into searchable formats, which is why it improves operational efficiency. 
+
+DocuWare’s automation operates primarily through a rule-based approach in which predefined conditions trigger specific workflows or document handling actions. For example, users can configure rules so that any document tagged with a specific keyword such as “Board Resolution” or “Policy Memorandum” is automatically routed to a designated folder, assigned to a reviewer and last is marked for approval. 
+
+While this rule-based approach provides structure and consistency, it depends heavily on user-defined templates and static metadata. This means that the system cannot adapt to nuanced document contexts or interpret unstructured content beyond its programmed parameters. Unlike AI-assisted systems that learn from document semantics and user interactions to refine search relevance. As such, organizations handling diverse and evolving document types—such as AFPMBAI’s board-level archives may find this approach less effective for contextual retrieval and intelligent decision support.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Texfiles/images/Mfiles.png}
+\caption{M-Files Document Management System User Interface Dashboard (Source: M-files Official Website, 2025).}
+\label{fig:sharepoint-interface}
+\end{figure}
+\subsection{M-Files Document Management System}
+M-Files uses metadata-driven content organization and supports both cloud and hybrid on-premise environments \citep{MFiles2024}. It offers version control and workflow automation that strengthen governance and compliance. Nevertheless, its Artificial Intelligence (AI) features are primarily designed for classification and process automation. The system lacks a conversational interface or Large Language Model (LLM) integration capable of context-aware question answering across multiple document types. This makes M-Files more suitable for structured enterprise workflows than for knowledge retrieval across unstructured board archives.
+
+\subsection{AI-Assisted Board of Trustees Document Archiving System for AFPMBAI}
+
+Organizations managing sensitive management documents faces problems with securing storage, quick retrieval, and policy compliance. AFPMBAI's current manual filing system makes finding information slow and unreliable. Public sector organizations have faced similar issues, and many government agencies have used Artificial Intelligence (AI) to update how they manage records. \cite{canning2025governmentrecords} found that AI in government records review greatly improved how ready and accessible digital archives were especially for records that were hard to find before. This shows how AI-powered archiving systems can make things more efficient and open while keeping information very secure. Following these improvements, the proposed AI-Assisted Board of Trustees Document Archiving System for AFPMBAI seeks to solve current problems with an on-site, AI-driven platform that offers contextual search, access based on user roles, and encrypted document protection.
+
+Although Microsoft SharePoint, DocuWare, and M-Files Document Management System provide robust document-management capabilities, they remain insufficient for the operational and data-privacy requirements of AFPMBAI. SharePoint’s dependence on Microsoft’s cloud infrastructure conflicts with AFPMBAI’s policy mandating that internal systems should be developed entirely on-premise. DocuWare and M-Files, though offering optional local deployment, it still rely on template-based search rather than adaptive AI models trained on contextual document semantics. In contrast, the proposed AI-Assisted Board of Trustees Document Archiving System is specifically engineered to operate within AFPMBAI’s secured network that ensures compliance with internal data-protection standards while delivering intelligent and context-aware retrieval of information.
+
+The biggest gap in the said existing systems lies in their lack of locally hosted AI capable of performing contextual, conversational retrieval over institutional archives. Existing tools emphasize automation and storage rather than comprehension and reasoning.
+
+The proposed system remains worth developing as it directly addresses these gaps by combining secure on-premise server storage with AES-256 encryption and a locally integrated Large Language Model (LLM) chatbot trained on AFPMBAI’s own archival data. The unique contribution of the project is the integration of AI-driven contextual understanding into a secure archiving framework specifically tailored for board-governance environments. This aligns with recent academic research on AI in archival science in which it highlights the growing importance of intelligent appraisal and retrieval to unlock the value of historically significant digital records while ensuring accountability and data control \citep{canning2025governmentrecords}.
